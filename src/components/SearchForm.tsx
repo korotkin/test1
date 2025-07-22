@@ -22,7 +22,11 @@ export default function SearchForm(props) {
 
     useEffect(() => {
         const res = data
-            .filter(({name}) => name.indexOf(searchText) > -1)
+            .filter(
+                ({name}) =>
+                    name.toLowerCase()
+                        .indexOf(searchText.toLowerCase()) > -1
+            )
             .sort((a, b) => a.name > b.name ? 1 : -1).slice(0, 10);
         setFilteredData(res);
     }, [data, searchText]);
